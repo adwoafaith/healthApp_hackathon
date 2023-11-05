@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const { isStrongPassword } = require('validator')
 const bcrypt = require('bcrypt')
 const { isEmail } = require('validator')
 
@@ -8,7 +9,7 @@ const Schema = mongoose.Schema;
 const Auth = new Schema({
     name: {
         type: String,
-        required: [true, 'Please enter your full name'],
+        required: [true, 'Please enter your name'],
     },
     email: {
         type: String,
@@ -17,10 +18,31 @@ const Auth = new Schema({
         lowercase: true,
         validate: [isEmail, 'Please enter a valid email']
     },
+    isVerified: {
+        type: Boolean,
+        default: false,
+    },
+    verificationCode: {
+        type: String,
+    },
+    expiresAt: {
+        type: Date,
+        default: null,
+    },
     password: {
         type: String,
         required: [true, 'Please enter a password'],
-        minlenght: [8, 'Minimum password lenght should be 6 characters']
+        minLength: [8, 'Password must be at least 8 characters long'], // Minimum length of 8 characters
+        validate: {
+            validator: function (value) {
+                return isStrongPassword(value, {
+                    minLowercase: 1, // At least 1 lowercase letter
+                    minUppercase: 1, // At least 1 uppercase letter
+                    minNumbers: 1, // At least 1 number
+                });
+            },
+            message: 'Please enter a valid password. Password must contain uppercase,lowercase,numbers and a symbol',
+        },
     },
     role:{
         type: String,
