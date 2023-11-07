@@ -40,9 +40,10 @@
     text-align: center;
     font-family: Roboto;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 1.5rem;
     line-height: normal;
-    margin: 1rem 0 2rem;
+    margin: 1rem 0;
 }
 
 .formBox {
@@ -58,7 +59,6 @@
     align-items: center;
 }
 
-.inputField select::placeholder,
 .inputField input::placeholder {
     color: #AAA5A5;
     font-family: Roboto;
@@ -80,26 +80,27 @@
     align-items: center;
 }
 
-.inputField select,
 .inputField input {
     border: none;
     outline: none;
     margin-left: .5rem;
 }
 
-.forgotPassword {
+.terms {
     color: #565151;
     font-family: Roboto;
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 12px;
     line-height: normal;
-    text-decoration-line: underline;
+    display: flex;
+    align-items: center;
 }
 
 
-.forgotPassword:hover {
+.link {
     color: #F4884C;
+    text-decoration-line: underline;
 }
 
 .button {
