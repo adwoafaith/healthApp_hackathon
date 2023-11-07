@@ -12,11 +12,11 @@ const password = process.env.APP_PASSWORD;
 
 //handle errors
 const handleError = (err) => {
-    let errors = { email: "", password: "", name: "" };
+    let errors = { email: "", password: "", name: "", confrimPassword: "", wardsName: "" };
 
     //handling duplicate errors
-    if (err.code === 11000){
-        errors.email = "This email is already registered" ;
+    if (err.code === 11000) {
+        errors.email = "This email is already registered";
         return errors
     }
 
@@ -32,15 +32,14 @@ const handleError = (err) => {
 }
 
 const signUP = async (req, res, next) => {
-    const { email, password ,name} = req.body;
-    console.log(email, password)
+    const { email, password, name, confirmPassword, wardsName } = req.body;
     try {
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: 'User already exists' });
         }
         //create a new user
-        const newUser = new User({ email, password,name, isVerified: true });
+        const newUser = new User({ email, password, name, confirmPassword, wardsName, isVerified: true });
         await newUser.save();
         return res.status(200).json({ message: "User created successfully" })
     }
@@ -96,46 +95,46 @@ const login = async (req, res, next) => {
 
 //nodemailer transporter
 const transporter = nodemailer.createTransport({
-    service:"Gmail",
-    auth:{
-        user:mail_name,
-        pass:password,
+    service: "Gmail",
+    auth: {
+        user: mail_name,
+        pass: password,
     },
 })
 
-const genOTP = async (req, res) =>{
+const genOTP = async (req, res) => {
     try {
-        const {email} = req.body;
+        const { email } = req.body;
         const otp = crypto.randomBytes(3).toString('hex')
         //compose the email
         const mailOptions = {
-            from :mail_name,
-            to:email,
-            subject:'Account Verification',
-            html:`<div>
+            from: mail_name,
+            to: email,
+            subject: 'Account Verification',
+            html: `<div>
             <p> Dear user, below is your verification code</p>
             <h1> ${otp} </h>
             </div>`
         };
         //send the mail
         await transporter.sendMail(mailOptions);
-        return res.status (200).json({token:genToken({email,otp}),message:"check your email for verification"})
+        return res.status(200).json({ token: genToken({ email, otp }), message: "check your email for verification" })
     } catch (error) {
-        return res.status(400).json({message:error.message})
+        return res.status(400).json({ message: error.message })
     }
 }
 
-const confirmOTP = (async(req,res, next) =>{
+const confirmOTP = (async (req, res, next) => {
     try {
         const {otp} = req.body;
         const tokenData = verifyToken(req.headers['authorization'].split(' ')[1])
         if (tokenData.code) return res.status(401).json({ message: 'Unauthorized' })
         if (tokenData.otp === otp) return next()
         else {
-    return res.status(400).json({message:'incorrect otp'})
-    }
+            return res.status(400).json({ message: 'incorrect otp' })
+        }
     } catch (error) {
-         return res.status(400).json({ message: error.message })
+        return res.status(400).json({ message: error.message })
 
     }
 })
@@ -143,7 +142,7 @@ const confirmOTP = (async(req,res, next) =>{
 module.exports = {
     handleError,
     signUP,
-    login, 
+    login,
     genOTP,
     confirmOTP,
 }

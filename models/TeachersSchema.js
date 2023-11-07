@@ -6,7 +6,7 @@ const { isEmail } = require('validator')
 
 const Schema = mongoose.Schema;
 
-const Auth = new Schema({
+const AuthTeachers = new Schema({
     name: {
         type: String,
         required: [true, 'Please enter your name'],
@@ -18,17 +18,7 @@ const Auth = new Schema({
         lowercase: true,
         validate: [isEmail, 'Please enter a valid email']
     },
-    isVerified: {
-        type: Boolean,
-        default: false,
-    },
-    verificationCode: {
-        type: String,
-    },
-    expiresAt: {
-        type: Date,
-        default: null,
-    },
+
     password: {
         type: String,
         required: [true, 'Please enter a password'],
@@ -44,23 +34,8 @@ const Auth = new Schema({
             message: 'Please enter a valid password. Password must contain uppercase,lowercase,numbers and a symbol',
         },
     },
-    confirmPassword: { // Added field for confirming the password
-        type: String,
-        required: [true, 'Please confirm your password'],
-        validate: {
-            validator: function (value) {
-                return value === this.password; // Compare with the password field
-            },
-            message: 'Password and Confirm Password must match',
-        },
-    },
-    
-    wardsName:{
-        type:String,
-        required:[true, 'Please enter wards name'],
-        trim:true
 
-    },
+
     passwordChangedAt: Date,
     passwordResetToken: String,
     passwordResetTokenExpires: Date
@@ -75,5 +50,5 @@ Auth.pre('save', async function (next) {
     next();
 })
 
-const User = mongoose.model('User', Auth);
-module.exports = User;
+const Teacher = mongoose.model('Teacher', AuthTeachers);
+module.exports = Teacher;
