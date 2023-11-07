@@ -1,0 +1,54 @@
+[
+    {
+        
+        "firstName": "Dian",
+        "lastName":"Lawson",
+        "gender":"female!",
+        "class":"5"
+        
+    },
+    {
+        
+        "firstName": "Ella",
+        "lastName":"Dadzie",
+        "gender":"female!",
+        "class":"4"
+        
+    },
+    {
+         
+         "firstName": "sammuel",
+        "lastName":"Handson",
+        "gender":"male",
+        "class":"3"
+       
+    },
+    {
+        
+        "firstName": "Micheal",
+        "lastName":"Opoku",
+        "gender":"male",
+        "class":"3"
+    },
+    {
+         "firstName": "Clara",
+        "lastName":"Borlu",
+        "gender":"female",
+        "class":"5"
+    },
+    {
+         "firstName": "Alice",
+        "lastName":"Fremah",
+        "gender":"female!",
+        "class":"5"
+    },
+    {
+         "firstName": "Daniel",
+        "lastName":"Forson",
+        "gender":"male",
+        "class":"4"
+    }
+    
+
+    
+]

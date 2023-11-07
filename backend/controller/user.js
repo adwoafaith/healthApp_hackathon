@@ -39,7 +39,7 @@ const signUP = async (req, res, next) => {
             return res.status(400).json({ message: 'User already exists' });
         }
         //create a new user
-        const newUser = new User({ email, password, name, confirmPassword, wardsName, isVerified: true });
+        const newUser = new User({ email, password,name,confirmPassword,wardsName,isVerified: true });
         await newUser.save();
         return res.status(200).json({ message: "User created successfully" })
     }
@@ -131,9 +131,9 @@ const confirmOTP = (async (req, res, next) => {
         if (tokenData.code) return res.status(401).json({ message: 'Unauthorized' })
         if (tokenData.otp === otp) return next()
         else {
-            return res.status(400).json({ message: 'incorrect otp' })
-        }
-    } catch (error) {
+    return res.status(400).json({ message: 'incorrect otp' })
+}
+} catch (error) {
         return res.status(400).json({ message: error.message })
 
     }
