@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Styles from '../css-modules/Navbar.module.css'
 import SignUpButton from './buttons/signUpButton'
-import Brand from '../assets/brand/Brand'
+import Brand from './Brand'
 
 const Navbar = () => {
   return (
