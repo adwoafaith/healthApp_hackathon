@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import BackIcon from '../components/BackIcon';
 import { Progress, Select, TextInput, rem } from '@mantine/core';
 import classes from '../css-modules/components/MantineInput.module.css';
+import { Input } from '@mantine/core';
+import { IMaskInput } from 'react-imask';
 
 const ThirdSignupPage = () => {
   return (
@@ -39,15 +41,13 @@ const ThirdSignupPage = () => {
               />
             </div>
             <div className={Styles.inputField}>
-                <TextInput
-                  size='md'
-                  radius="md"
-                  type='number'
-                  leftSectionPointerEvents="none"
-                  placeholder="Phone number"
-                  name='tel'
-                  // onChange={handleInputChange}
-                />
+              <Input 
+                size='md'
+                radius="md"
+                component={IMaskInput} 
+                mask="+233 (000) 000-00-00" 
+                placeholder="Phone number" 
+              /> 
             </div>
 
             <button className={Styles.button}>Continue</button>
