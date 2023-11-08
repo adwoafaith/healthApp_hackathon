@@ -1,11 +1,11 @@
 import React from 'react'
-import Styles from '../css-modules/ThirdSignup.module.css'
+import Styles from '../css-modules/signup/ThirdSignup.module.css'
 import Brand from '../components/Brand';
 import KidsWithParent from '../assets/images/a-man-with-kids.svg'
 import { Link } from 'react-router-dom';
 import BackIcon from '../components/BackIcon';
 import { Progress, Select, TextInput, rem } from '@mantine/core';
-import classes from '../css-modules/MantineInput.module.css';
+import classes from '../css-modules/components/MantineInput.module.css';
 
 const ThirdSignupPage = () => {
   return (

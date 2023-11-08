@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Logo from '../assets/brand/momytor.svg'
-import Styles from '../css-modules/Brand.module.css'
+import Styles from '../css-modules/components/Brand.module.css'
 
 const Brand = () => {
   return (

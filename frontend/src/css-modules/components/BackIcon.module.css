@@ -1,0 +1,14 @@
+.backIcon {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    color: #000;
+}
+
+.backIcon, .backIcon label {
+    cursor: pointer;
+}

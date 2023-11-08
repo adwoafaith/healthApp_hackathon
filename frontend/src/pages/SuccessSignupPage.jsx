@@ -1,5 +1,5 @@
 import React from 'react'
-import Styles from '../css-modules/SuccessSignup.module.css'
+import Styles from '../css-modules/signup/SuccessSignup.module.css'
 import Brand from '../components/Brand';
 import ManWithAGirl from '../assets/images/a-man-with-a-small-girl.svg'
 import BackIcon from '../components/BackIcon';

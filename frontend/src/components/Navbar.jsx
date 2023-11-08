@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Styles from '../css-modules/Navbar.module.css'
+import Styles from '../css-modules/components/Navbar.module.css'
 import SignUpButton from './buttons/signUpButton'
 import Brand from './Brand'
 

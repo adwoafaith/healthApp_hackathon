@@ -1,5 +1,5 @@
 import React from 'react'
-import Styles from '../css-modules/Signup.module.css'
+import Styles from '../css-modules/signup/Signup.module.css'
 import Brand from '../components/Brand';
 import Kids from '../assets/images/login-image.svg'
 import { Link } from 'react-router-dom';

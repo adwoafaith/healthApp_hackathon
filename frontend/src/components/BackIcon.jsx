@@ -1,5 +1,5 @@
 import React from 'react'
-import Styles from '../css-modules/BackIcon.module.css'
+import Styles from '../css-modules/components/BackIcon.module.css'
 import { MdKeyboardBackspace } from 'react-icons/Md';
 import { Link } from 'react-router-dom';
 
