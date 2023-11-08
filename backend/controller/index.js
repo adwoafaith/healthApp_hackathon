@@ -1,7 +1,36 @@
 const express = require('express')
+const Child = require('../models/childrenSchema')
 
-const hello = (req,res) =>{
-    return res.status(200).json({msg: 'hello world'})
+const hello = (req, res) => {
+    return res.status(200).json({ msg: 'hello world' })
 }
 
-module.exports = hello;
+
+const findChild = async (req, res, next) => {
+    const { firstName } = req.body;
+    if (!firstName) {
+        res.status(200).json({ message: `Please provide a name` });
+    }
+    try {
+        const child = await Child.findOne({ firstName });
+        if (!child) {
+            return res.status(400).json({
+                message: `There is no child by name ${child}`,
+            });
+        } else {
+            return res.status(200).json({
+                sucess: true,
+                message: child,
+            });
+        }
+    } catch (error) {
+        return res.status(400).json({
+            message: `An error occured`,
+            error: error.message,
+        });
+    }
+};
+module.exports = {
+    hello,
+    findChild
+}

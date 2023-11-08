@@ -7,6 +7,12 @@ const FileSchema = new Schema({
     myFile: {
         type: String
     },
+    file_url: {
+        type: String,
+    },
+    format: {
+        type: String,
+    },
 
   
 
