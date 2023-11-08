@@ -1,0 +1,24 @@
+.signUpButton {
+    padding: .5rem 2.5rem;
+    border-radius: 2.31794rem;
+    border: 2.469px solid #000;
+    background: rgba(254, 250, 248, 0.00);
+    color: #020100;
+    font-family: sans-serif, 'Inter';
+    font-size: 1.15894rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.loginButton {
+    padding: .5rem 2.5rem;
+    border-radius: 2.31794rem;
+    background: rgba(255, 94, 4, 0.71);
+    color: #fff;
+    font-family: sans-serif, 'Inter';
+    font-size: 1.15894rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}

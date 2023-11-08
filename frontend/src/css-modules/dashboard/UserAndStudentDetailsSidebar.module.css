@@ -1,0 +1,14 @@
+.rightSideBar {
+    height: 100%;
+    width: 20rem;
+    background: #FFF;
+    /* box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.05); */
+}
+
+.studentDetails {
+    background: #FFF;
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.05);
+    height: 80%;
+    margin-top: 2rem;
+    border-radius: .5rem 0 0 .5rem;
+}
