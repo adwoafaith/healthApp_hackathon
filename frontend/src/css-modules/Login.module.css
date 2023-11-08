@@ -6,7 +6,7 @@
 }
 
 .imageContainer {
-    width: 45%;
+    width: 40%;
     background: #F9E0A2;
     display: flex;
     justify-content: center;
@@ -18,7 +18,7 @@
 }
 
 .LoginForm {
-    width: 55%;
+    width: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,11 +26,12 @@
 }
 
 .container {
-    width: 60%;
+    width: 70%;
     height: 90%;
     padding: 1rem 0;
     
     display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
 }
@@ -50,41 +51,20 @@
 }
 
 .inputField {
-    border-radius: 0.5rem;
-    border: 1px solid #AAA5A5;
     margin: 2rem 0;
-    padding: .7rem .5rem;
+}
+
+.forgotPasswordRow {
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-.inputField select::placeholder,
-.inputField input::placeholder {
-    color: #AAA5A5;
+.checkbox {
+    color: #565151;
     font-family: Roboto;
     font-style: normal;
-    font-weight: 300;
     line-height: normal;
-    letter-spacing: -0.0475rem;
-}
-
-.inputField .icon {
-    width: .7rem;
-    height: .7rem;
-    color: #AAA5A5;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-    display: flex;
-    align-items: center;
-}
-
-.inputField select,
-.inputField input {
-    border: none;
-    outline: none;
-    margin-left: .5rem;
 }
 
 .forgotPassword {
@@ -115,3 +95,5 @@
     font-weight: 500;
     line-height: normal;
 }
+
+/* @media only screen and (max-width:) */
