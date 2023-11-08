@@ -54,3 +54,26 @@
 .heroImage .KidsWithBooks {
     width: 32.4375rem;
 }
+
+@media only screen and (max-width: 680px) {
+    .heroImage {
+        display: none;
+    }
+
+    .content {
+        width: 100%;
+        padding-left: 2rem;
+    }
+
+    .hero {
+        align-items: center;
+    }
+
+    .content .title {
+        font-size: 2rem;
+    }
+
+    .content .subContent {
+        font-size: 1rem;
+    }
+}

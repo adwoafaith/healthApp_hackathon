@@ -18,3 +18,14 @@
 .navLinks li {
     list-style: none;
 }
+
+@media only screen and (max-width: 680px) {
+    .navBar {
+        width: 80%;
+    }
+
+    .navLinks li:nth-child(3),
+    .navLinks li:nth-child(4) {
+        display: none;
+    }
+}
