@@ -140,56 +140,49 @@ const confirmOTP = (async (req, res, next) => {
 
 
 const forgotPassword = async (req, res) => {
-    const {email} = req.body;
+    const { email } = req.body;
     try {
-        //generate a unique token
+        // Generate a unique token
         const token = crypto.randomBytes(20).toString("hex");
 
-        //find the user by their email
-        const user = await User.findOne({email});
+        // Find the user by their email
+        const user = await User.findOne({ email });
+
         if (!user) {
-            return res
-                .status(400)
-                .json({ success: false, message: "User is not found" });
+            return res.status(400).json({ message: "User is not found" });
         }
 
-        //store token and generate tokenexpires in user records
+        // Validate the user's email verification status
+        if (!user.isVerified) {
+            return res.status(403).json({ error: "Account not verified" });
+        }
+
+        // Store the token and generate the tokenExpires field in the user's records
         user.passwordResetToken = token;
         user.passwordResetTokenExpires = Date.now() + 3600000;
         await user.save();
 
-
-        //email options
+        // Send the password reset email
         const mailOptions = {
             from: mail_name,
             to: user.email,
             subject: "Reset password",
             text:
-                `You or someone send a request to change your email password` +
-                `ignore of not necessary or click on the link below to reset your password:\n\n` +
-                `/resetPassword/${token}\n\n`,
+                `You or someone sent a request to change your email password\n\n` +
+                `Please ignore if not necessary or follow the link to reset your password:\n\n` +
+                `${process.env.FRONTEND_URL}/resetPassword/${token}\n\n`,
         };
-        transporter.sendMail(mailOptions, (error, info) => {
+        transporter.sendMail(mailOptions, async (error, info) => {
             if (error) {
-                return res
-                    .status(500)
-                    .json({ sucess: false, message: "Email not sent! Failed" });
+                return res.status(500).json({ message: "Email not sent! Failed" });
             }
-            else if (!user.isVerified) {
-                return res.status(403).json({ error: 'Account not verified' });
-            }
-            return res
-                .status(200)
-                .json({
-                    sucess: true,
-                    token: token,
-                    message: "Password link sent to the email provided",
-                });
+
+            return res.status(200).json({
+                message: "Password link sent to the email provided",
+            });
         });
     } catch (error) {
-        return res
-            .status(500)
-            .json({ message: "Internal server error", error: error.message });
+        return res.status(500).json({ message: "Internal server error", error: error.message });
     }
 };
 
