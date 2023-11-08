@@ -7,8 +7,14 @@ import BackIcon from '../components/BackIcon';
 import Checkbox from '@mui/material/Checkbox';
 import { FiMail } from 'react-icons/fi';
 import { AiOutlineLock } from 'react-icons/ai';
+import { TextInput, rem } from '@mantine/core';
+import { PasswordInput } from '@mantine/core';
 
 const SignupPage = () => {
+
+  const mailIcon = <FiMail style={{ width: rem(12), height: rem(12) }} />;
+  const lockIcon = <AiOutlineLock style={{ width: rem(12), height: rem(12) }} />;
+
   return (
     <section className={Styles.section}>
       <div className={Styles.imageContainer}>
@@ -26,23 +32,33 @@ const SignupPage = () => {
 
           <form action="#" className={Styles.formBox}>
             <div className={Styles.inputField}>
-              <span className={Styles.icon}>
-                <FiMail />
-              </span>
-              <input type="text" placeholder='Email' required />
+              <TextInput
+                size='md'
+                radius="md"
+                leftSectionPointerEvents="none"
+                leftSection={mailIcon}
+                placeholder="Email"
+                name='email'
+                // onChange={handleInputChange}
+              />
             </div>
             <div className={Styles.inputField}>
-              <span className={Styles.icon}>
-                <AiOutlineLock />
-              </span>
-              <input type="password" placeholder='Password' required />
+              <PasswordInput
+                size='md'
+                radius="md"
+                leftSectionPointerEvents="none"
+                leftSection={lockIcon}
+                placeholder="Password"
+              />
             </div>
-
             <div className={Styles.inputField}>
-              <span className={Styles.icon}>
-                <AiOutlineLock />
-              </span>
-              <input type="password" placeholder='Confirm Password' required />
+              <PasswordInput
+                size='md'
+                radius="md"
+                leftSectionPointerEvents="none"
+                leftSection={lockIcon}
+                placeholder="Confirm Password"
+              />
             </div>
 
             <div className={Styles.terms}>

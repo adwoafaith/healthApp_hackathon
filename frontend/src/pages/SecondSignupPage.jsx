@@ -1,12 +1,10 @@
 import React from 'react'
-import Styles from '../css-modules/Signup.module.css'
+import Styles from '../css-modules/SecondSignup.module.css'
 import Brand from '../components/Brand';
 import Kids from '../assets/images/login-image.svg'
 import { Link } from 'react-router-dom';
 import BackIcon from '../components/BackIcon';
-import Checkbox from '@mui/material/Checkbox';
-import { FiMail } from 'react-icons/fi';
-import { AiOutlineLock } from 'react-icons/ai';
+import { Progress, TextInput } from '@mantine/core';
 
 const SecondSignupPage = () => {
   return (
@@ -16,31 +14,54 @@ const SecondSignupPage = () => {
       </div>
 
       <div className={Styles.LoginForm}>
-        
         <BackIcon />
-
+        
         <div className={Styles.container}>
           <Brand />
+
+          <div className={Styles.progress}>
+            <Progress color="#F9E0A2" radius="xl" size="xl" value={33.333} />
+          </div>
 
           <h1 className={Styles.title}>Let's create your account!</h1>
 
           <form action="#" className={Styles.formBox}>
             <div className={Styles.inputField}>
-              <input type="text" placeholder='Email' required />
+              <TextInput
+                size='md'
+                radius="md"
+                leftSectionPointerEvents="none"
+                placeholder="First name"
+                name='email'
+                // onChange={handleInputChange}
+              />
             </div>
             <div className={Styles.inputField}>
-              <input type="password" placeholder='Password' required />
+              <TextInput
+                size='md'
+                radius="md"
+                leftSectionPointerEvents="none"
+                placeholder="Middle name"
+                name='email'
+                // onChange={handleInputChange}
+              />
+            </div>
+            <div className={Styles.inputField}>
+              <TextInput
+                size='md'
+                radius="md"
+                leftSectionPointerEvents="none"
+                placeholder="Last name"
+                name='email'
+                // onChange={handleInputChange}
+              />
             </div>
 
-            <div className={Styles.inputField}>
-              <input type="password" placeholder='Confirm Password' required />
-            </div>
+            <button className={Styles.button}>Add name</button>
 
             <div className={Styles.terms}>
-              <span>By registering, you agree to the <Link className={Styles.link} to={'/'}>Terms of use</Link> and <Link className={Styles.link} to={'/'}>Privacy Policy</Link>. </span>
+              <span>Your information is safe. Read our <Link className={Styles.link} to={'/'}>Privacy Policy</Link>. </span>
             </div>
-
-            <button className={Styles.button}>Create an account</button>
           </form>
         </div>
       </div>
