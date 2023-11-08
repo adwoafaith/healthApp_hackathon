@@ -1,12 +1,17 @@
 import React from 'react'
-import '../../css-modules/components/Header.module.css'
 
 const Header = () => {
   return (
-    <header>
+    <header style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'right',
+      padding: '0 2rem',
+      height: 50
+    }}>
         <label htmlFor="tabs">
-            <span>...oldTab</span>
-            <span>/current</span>
+            <span style={{color: 'rgba(35, 50, 85, 0.50)'}}>...Teacher</span>
+            <span style={{color: '#F6AD2B'}}>/Students</span>
         </label>
     </header>
   )
