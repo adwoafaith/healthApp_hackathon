@@ -9,7 +9,7 @@ const Schema = mongoose.Schema;
 const Auth = new Schema({
     name: {
         type: String,
-        required: [true, 'Please enter your name'],
+        // required: [true, 'Please enter your name'],
     },
     email: {
         type: String,
@@ -54,11 +54,11 @@ const Auth = new Schema({
             message: 'Password and Confirm Password must match',
         },
     },
-    
-    wardsName:{
-        type:String,
-        required:[true, 'Please enter wards name'],
-        trim:true
+
+    wardsName: {
+        type: String,
+        // required:[true, 'Please enter wards name'],
+        trim: true
 
     },
     passwordChangedAt: Date,
