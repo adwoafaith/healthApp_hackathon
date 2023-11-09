@@ -7,10 +7,7 @@ const { isEmail } = require('validator')
 const Schema = mongoose.Schema;
 
 const Auth = new Schema({
-    name: {
-        type: String,
-        required: [true, 'Please enter your name'],
-    },
+  
     email: {
         type: String,
         required: [true, 'Please enter your email'],
@@ -32,7 +29,7 @@ const Auth = new Schema({
     password: {
         type: String,
         required: [true, 'Please enter a password'],
-        minLength: [8, 'Password must be at least 8 characters long'], // Minimum length of 8 characters
+        minLength: [20, 'Password must be at least 8 characters long'], // Minimum length of 8 characters
         validate: {
             validator: function (value) {
                 return isStrongPassword(value, {
@@ -44,11 +41,22 @@ const Auth = new Schema({
             message: 'Please enter a valid password. Password must contain uppercase,lowercase,numbers and a symbol',
         },
     },
-    role:{
+    confrimPassword:{
         type: String,
-        enum: ['patient', 'doctor'],
-        default: 'patient'
+        required: [true, 'Please confirm your password'],
+        validate: {
+            validator: function (value) {
+                return value === this.password; // Compare with the password field
+            },
+            message: 'Password and Confirm Password must match',
+        },
+    },
 
+    
+    role:{
+        type:String,
+        enum:['teacher','parent'],
+        default:'parent'
     },
     passwordChangedAt: Date,
     passwordResetToken: String,

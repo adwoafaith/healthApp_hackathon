@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const app = express()
 const connect = require('./db')
 require('dotenv').config()
@@ -10,7 +11,7 @@ const port = process.env.PORT || 6000
 //middleware
 app.use(express.json())
 app.use('/api/v1',router)
-
+app.use(cors())
 app.use(notFound)
 app.use(handleError)
 

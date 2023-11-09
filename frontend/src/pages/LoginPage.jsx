@@ -12,16 +12,25 @@ import classes from '../css-modules/components/MantineInput.module.css';
 import { PasswordInput } from '@mantine/core';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import axios from 'axios';
 
 const LoginPage = () => {
 
   const [ formData, setFormData ] = useState({})
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     console.log('Submitted');
-    console.log(formData);
+    // console.log(formData);
     
+      axios.post('http://localhost:8000/api/v1/login', formData)
+      .then((response) => {
+        console.log(response);
+
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   const handleInputChange = (e) => {
@@ -94,7 +103,7 @@ const LoginPage = () => {
               <Link className={Styles.forgotPassword} to={'/'}>Forgot your password?</Link>
             </div>
 
-            <button className={Styles.button}>Sign In</button>
+            <button className={Styles.button}>Login</button>
           </form>
         </div>
       </div>

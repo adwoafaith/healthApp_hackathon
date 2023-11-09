@@ -35,7 +35,7 @@ const signUP = async (req, res, next) => {
     const { email, password ,name} = req.body;
     console.log(email, password)
     try {
-        const existingUser = await User.findOne({ email });
+        const existingUser = await User.findOne({ email:email });
         if (existingUser) {
             return res.status(400).json({ message: 'User already exists' });
         }
@@ -45,6 +45,7 @@ const signUP = async (req, res, next) => {
         return res.status(200).json({ message: "User created successfully" })
     }
     catch (err) {
+        console.log(err)
         const errors = handleError(err)
         return res.status(400).json({ errors });
     }
@@ -136,7 +137,6 @@ const confirmOTP = (async(req,res, next) =>{
     }
     } catch (error) {
          return res.status(400).json({ message: error.message })
-
     }
 })
 
