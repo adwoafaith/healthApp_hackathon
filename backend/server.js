@@ -26,7 +26,7 @@ app.use(function (_req, res, next) {
 app.use(notFound)
 app.use(handleError)
 
-const start = async () => {
+const nodemon = async () => {
     try {
         await connect(process.env.DATABASE_CONNECTION)
         console.log("connected to database")
@@ -38,4 +38,4 @@ const start = async () => {
     }
 }
 
-start();
+nodemon ();
