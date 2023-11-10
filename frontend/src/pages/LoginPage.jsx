@@ -32,7 +32,7 @@ const LoginPage = () => {
       })
       .catch((err) => {
         console.log(err);
-        alert("All fields are required")
+        // alert("All fields are required")
       })
 
       

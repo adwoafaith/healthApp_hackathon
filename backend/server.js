@@ -29,7 +29,8 @@ app.use(handleError)
 const start = async () => {
     try {
         await connect(process.env.DATABASE_CONNECTION)
-        console.log('connected to dabatase sucessfully')
+        console.log("connected to database")
+        console.log(`Server running on ${port}`)  
         app.listen(port, console.log(`server is listeing on port ${port}`))
 
     } catch (error) {
