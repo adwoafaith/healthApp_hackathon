@@ -1,23 +1,34 @@
 const express = require('express')
-const cors = require('cors')
 const app = express()
+const cors = require('cors')
 const connect = require('./db')
 require('dotenv').config()
 const handleError = require('./error/handleError')
 const notFound = require('./middleware/notfound')
 const router = require('./routers')
-const port = process.env.PORT || 6000
+const port = process.env.PORT || 5000
 
 //middleware
 app.use(express.json())
-app.use('/api/v1',router)
-app.use(cors())
+app.use(cors());
+app.use('/api/v1', router)
+app.use(function (_req, res, next) {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+//   res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
+
+// error handling middleware
+
+
 app.use(notFound)
 app.use(handleError)
 
-const start = async() =>{
-    try {   
-         await connect(process.env.DATABASE_CONNECTION)
+const start = async () => {
+    try {
+        await connect(process.env.DATABASE_CONNECTION)
         console.log('connected to dabatase sucessfully')
         app.listen(port, console.log(`server is listeing on port ${port}`))
 

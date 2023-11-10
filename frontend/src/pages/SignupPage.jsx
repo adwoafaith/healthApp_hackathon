@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Styles from '../css-modules/signup/SignupPage.module.css'
 import Brand from '../components/Brand';
 import Kids from '../assets/images/login-image.svg'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import BackIcon from '../components/BackIcon';
 import Checkbox from '@mui/material/Checkbox';
 import { FiMail } from 'react-icons/fi';
@@ -21,6 +21,8 @@ const SignupPage = () => {
   const [ opened, { open, close } ] = useDisclosure(false);
   const [ otp, setOtp ] = useState('');
   const [ validationDone, setValidationDone ] = useState(false)
+  
+  const navigate = useNavigate()
 
   const handleChange = (newValue) => {
     setOtp(newValue)
@@ -63,7 +65,6 @@ const SignupPage = () => {
             setValidationDone(true)
             axios.post('http://localhost:8000/api/v1/verify', formData)
             .then((response) => {
-              console.log("Verify response:  ",response.data.token);
               setFormData({
                 ...formData,
                 ['token']: response.data.token
@@ -79,22 +80,20 @@ const SignupPage = () => {
 
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
 
-    console.log("Submit data: ", formData);
-
-    axios.post('http://localhost:8000/api/v1/signup', formData, {
+    await axios.post('http://localhost:8000/api/v1/signup', formData, {
       headers: {
       'Authorization': `Bearer ${formData.token}`,
       'Accept': 'application/json'
     }
     })
     .then((response) => {
-      console.log("Submit response:  ",response);
-
+      alert(response?.data?.message)
+      navigate("/dashboard-parent")
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((error) => {
+      alert(error?.response?.data?.message)
     })
   }
 
@@ -167,7 +166,7 @@ const SignupPage = () => {
               <span>By registering, you agree to the <Link className={Styles.link} to={'/signup-2'}>Terms of use</Link> and <Link className={Styles.link} to={'/'}>Privacy Policy</Link>. </span>
             </div>
 
-            <button className={Styles.button} onClick={validationDone ? open : undefined}>Create an account</button>
+            <button className={Styles.button} onClick={open}>Create an account</button>
           </form>
         </div>
       </div>

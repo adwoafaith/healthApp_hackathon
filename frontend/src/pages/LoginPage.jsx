@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Styles from '../css-modules/Login.module.css'
 import Brand from '../components/Brand';
 import Kids from '../assets/images/login-image.svg'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import BackIcon from '../components/BackIcon';
 import { FaRegUser } from 'react-icons/fa';
 import { FiMail } from 'react-icons/fi';
@@ -14,23 +14,28 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import axios from 'axios';
 
+
 const LoginPage = () => {
 
   const [ formData, setFormData ] = useState({})
+  const [value, setValue] = useState('');
+
+  const navigate = useNavigate();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log('Submitted');
-    // console.log(formData);
     
-      axios.post('http://localhost:8000/api/v1/login', formData)
+      await axios.post('http://localhost:8000/api/v1/login', formData)
       .then((response) => {
-        console.log(response);
-
+        alert(response.data.message)
+        navigate(`/dashboard-${value.toLowerCase()}`)
       })
       .catch((err) => {
         console.log(err);
+        alert("All fields are required")
       })
+
+      
   }
 
   const handleInputChange = (e) => {
@@ -72,7 +77,8 @@ const LoginPage = () => {
                 data={['Parent', 'Teacher']}
                 placeholder="Role"
                 classNames={classes}
-                // onChange={handleInputChange}
+                value={value} 
+                onChange={setValue}
               />
             </div>
             <div className={Styles.inputField}>

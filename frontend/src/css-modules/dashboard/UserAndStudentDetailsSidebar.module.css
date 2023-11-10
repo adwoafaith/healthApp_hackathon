@@ -33,7 +33,7 @@
 }
 
 .studentInfo {
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
 }
 
 .title {
@@ -56,6 +56,27 @@
     line-height: normal;
     letter-spacing: 0.01875rem;
     text-transform: uppercase;
+}
+
+.progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progress span {
+    color: #000;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 0.625rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.02188rem;
+}
+
+.progressBar {
+    width: 80%;
 }
 
 .operationButtons {

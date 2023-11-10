@@ -16,12 +16,9 @@ import Brand from '../Brand';
 
 const data = [
   { link: '', label: 'Notifications', icon: IconBellRinging },
-  { link: '', label: 'Billing', icon: IconReceipt2 },
-  { link: '', label: 'Security', icon: IconFingerprint },
-  { link: '', label: 'SSH Keys', icon: IconKey },
-  { link: '', label: 'Databases', icon: IconDatabaseImport },
-  { link: '', label: 'Authentication', icon: Icon2fa },
-  { link: '', label: 'Other Settings', icon: IconSettings },
+  { link: '', label: 'Students', icon: IconReceipt2 },
+  { link: '', label: 'Records', icon: IconFingerprint },
+  { link: '', label: 'Profile', icon: IconKey },
 ];
 
 const TeacherDashboardSidebar = () => {
@@ -47,7 +44,7 @@ const TeacherDashboardSidebar = () => {
     <nav className={classes.navbar}>
       <div className={classes.navbarMain}>
         <Group className={classes.header} justify="space-between">
-          <Brand />
+          <Brand color={'#fff'} />
         </Group>
         {links}
       </div>

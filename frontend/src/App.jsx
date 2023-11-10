@@ -6,6 +6,7 @@ import SecondSignupPage from './pages/SecondSignupPage'
 import ThirdSignupPage from './pages/ThirdSignupPage'
 import SuccessSignupPage from './pages/SuccessSignupPage'
 import TeacherDashboard from './pages/TeacherDashboard'
+import ParentDashboard from './pages/ParentDashboard'
 
 function App() {
 
@@ -18,7 +19,8 @@ function App() {
         <Route path="/signup-2" element={<SecondSignupPage />} />
         <Route path="/signup-3" element={<ThirdSignupPage />} />
         <Route path="/signup-successful" element={<SuccessSignupPage />} />
-        <Route path="/dashboard" element={<TeacherDashboard />} />
+        <Route path="/dashboard-teacher" element={<TeacherDashboard />} />
+        <Route path="/dashboard-parent" element={<ParentDashboard />} />
       </Routes>
     </BrowserRouter>
   )

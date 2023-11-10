@@ -1,12 +1,12 @@
 import React from 'react'
-import '../../css-modules/components/Header.module.css'
+import Styles from '../../css-modules/components/Header.module.css'
 
 const Header = () => {
   return (
-    <header>
+    <header className={Styles.header}>
         <label htmlFor="tabs">
-            <span>...oldTab</span>
-            <span>/current</span>
+            <span className={Styles.previousTab}>...Teacher</span>
+            <span className={Styles.currentTab}>/Students</span>
         </label>
     </header>
   )
