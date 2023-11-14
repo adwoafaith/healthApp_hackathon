@@ -4,7 +4,7 @@
   "description": "a group hackathon",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "dev": "nodemon server.js"
   },
   "author": "Lady faith",

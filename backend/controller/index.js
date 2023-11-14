@@ -30,7 +30,30 @@ const findChild = async (req, res, next) => {
         });
     }
 };
+
+const addChild = async(req,res) =>{
+   
+    try {
+        const child = await Child.create(req.body)
+        return res.status(200).send('child added sucessfully')
+        
+    } catch (error) {
+        return res.status(400).send(error.message)
+    }
+}
+
+const findAllChildren = async(req,res)=>{
+    try {
+       const child = await Child.find ({})
+        return res.status(200).json({child})
+    } catch (error) {
+        return res.status(400).send(error.message)
+    }
+}
+
 module.exports = {
     hello,
+    addChild,
+    findAllChildren,
     findChild
 }

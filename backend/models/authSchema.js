@@ -7,10 +7,7 @@ const { isEmail } = require('validator')
 const Schema = mongoose.Schema;
 
 const Auth = new Schema({
-    name: {
-        type: String,
-        // required: [true, 'Please enter your name'],
-    },
+   
     email: {
         type: String,
         required: [true, 'Please enter your email'],
@@ -32,7 +29,7 @@ const Auth = new Schema({
     password: {
         type: String,
         required: [true, 'Please enter a password'],
-        minLength: [8, 'Password must be at least 8 characters long'], // Minimum length of 8 characters
+        minlength: [8, 'Password must be at least 8 characters long'], // Minimum length of 8 characters
         validate: {
             validator: function (value) {
                 return isStrongPassword(value, {
@@ -55,12 +52,7 @@ const Auth = new Schema({
         },
     },
 
-    wardsName: {
-        type: String,
-        // required:[true, 'Please enter wards name'],
-        trim: true
-
-    },
+   
     passwordChangedAt: Date,
     passwordResetToken: String,
     passwordResetTokenExpires: Date
@@ -72,6 +64,12 @@ const Auth = new Schema({
 Auth.pre('save', async function (next) {
     const salt = await bcrypt.genSalt();
     this.password = await bcrypt.hash(this.password, salt)
+    next();
+     // Hash the confirmPassword field if it is set
+     if (this.confirmPassword) {
+        this.confirmPassword = await bcrypt.hash(this.confirmPassword, salt);
+    }
+
     next();
 })
 

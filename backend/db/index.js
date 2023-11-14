@@ -2,10 +2,10 @@ const express = require('express')
 const mongoose = require('mongoose')
 
 const connect = (uri) => {
-    mongoose.connect(uri), {
-        newUnifiedTopology: true,
+    mongoose.connect(uri, {
         useNewUrlParser: true,
-    }
+        useUnifiedTopology: true
+    });
 }
 
 module.exports = connect;

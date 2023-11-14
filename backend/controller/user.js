@@ -39,7 +39,7 @@ const signUP = async (req, res, next) => {
             return res.status(400).json({ message: 'User already exists' });
         }
         //create a new user
-        const newUser = new User({ email, password, name, confirmPassword, wardsName, isVerified: true });
+        const newUser = new User({ email, password, confirmPassword, isVerified: true });
         await newUser.save();
         return res.status(200).json({ message: "User created successfully" })
     }
@@ -74,6 +74,7 @@ const login = async (req, res, next) => {
                 let token = genToken({ email, });
                 return res.status(200).json({
                     message: "login Successful",
+                    email: user.email,
                     token,
 
                 });
@@ -127,7 +128,7 @@ const genOTP = async (req, res) => {
 const confirmOTP = (async (req, res, next) => {
     try {
         const { otp } = req.body;
-        const tokenData = verifyToken(req.headers['authorization'])
+        const tokenData = verifyToken(req.headers['authorization'].split(' ')[1])
         if (tokenData.code) return res.status(401).json({ message: 'Unauthorized' })
         if (tokenData.otp === otp) return next()
         else {
@@ -137,7 +138,6 @@ const confirmOTP = (async (req, res, next) => {
         return res.status(400).json({ message: error.message })
     }
 })
-
 
 const forgotPassword = async (req, res) => {
     const { email } = req.body;
@@ -156,7 +156,8 @@ const forgotPassword = async (req, res) => {
         if (!user.isVerified) {
             return res.status(403).json({ error: "Account not verified" });
         }
-
+        const confirmPasswordValidation = user.schema.path('confirmPassword').validators;
+        user.schema.path('confirmPassword').validators = [];
         // Store the token and generate the tokenExpires field in the user's records
         user.passwordResetToken = token;
         user.passwordResetTokenExpires = Date.now() + 3600000;
@@ -170,9 +171,9 @@ const forgotPassword = async (req, res) => {
             text:
                 `You or someone sent a request to change your email password\n\n` +
                 `Please ignore if not necessary or follow the link to reset your password:\n\n` +
-                `${process.env.FRONTEND_URL}/resetPassword/${token}\n\n`,
+                `/resetPassword/${token}\n\n`,
         };
-        transporter.sendMail(mailOptions, async (error, info) => {
+         await transporter.sendMail(mailOptions, async (error, info) => {
             if (error) {
                 return res.status(500).json({ message: "Email not sent! Failed" });
             }
@@ -201,6 +202,7 @@ const resetPassword = async (req, res) => {
                 .status(400)
                 .json({ message: "token is invalid or has expired" });
         }
+
 
         //reseting the password
         user.password = password;
