@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path');
 const app = express()
 const connect = require('./db')
 require('dotenv').config()
@@ -14,10 +15,13 @@ app.use('/api/v1', router)
 app.use(notFound)
 app.use(handleError)
 
+const serverFilePath = path.join(__dirname, 'server.js');
+
 const start = async () => {
     try {
         await connect(process.env.DATABASE_CONNECTION)
         console.log('connected to dabatase sucessfully')
+        console.log(`File path: ${serverFilePath}`);
         app.listen(port, console.log(`server is listening on port ${port}`))
 
     } catch (error) {
