@@ -21,7 +21,6 @@ const start = async () => {
     try {
         await connect(process.env.DATABASE_CONNECTION)
         console.log('connected to dabatase sucessfully')
-        console.log(`File path: ${serverFilePath}`);
         app.listen(port, console.log(`server is listening on port ${port}`))
 
     } catch (error) {
