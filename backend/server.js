@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path');
 const app = express()
+const cors = require('cors')
 const connect = require('./db')
 require('dotenv').config()
 const handleError = require('./error/handleError')
@@ -9,13 +10,12 @@ const router = require('./routers')
 const port = process.env.PORT || 5000
 
 //middleware
+app.use(cors())
 app.use(express.json())
 app.use('/api/v1', router)
 
 app.use(notFound)
 app.use(handleError)
-
-const serverFilePath = path.join(__dirname, 'server.js');
 
 const start = async () => {
     try {
