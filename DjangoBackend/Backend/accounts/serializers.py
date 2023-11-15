@@ -24,7 +24,6 @@ class ParentProfileSerializer(serializers.ModelSerializer):
         fields = ['telephone_number', 'parent_name', 'child_first_name', 'child_last_name', 'child_gender', 'child_classroom', 'profile_picture']
 
     def validate_telephone_number(self, value):
-        # Add any custom validation for telephone_number if needed
         return value
     
 

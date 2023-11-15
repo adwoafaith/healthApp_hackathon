@@ -110,7 +110,7 @@ def logout_view(request):
 
 
 @api_view(['GET'])
-@permission_classes([permissions.IsAuthenticated])
+@permission_classes([permissions.AllowAny])
 def get_teacher_details(request):
     user = request.user
 
